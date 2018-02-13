@@ -1,7 +1,7 @@
 package com.github.bkenn.jpafx.view
 
 import com.github.bkenn.jpafx.Styles
-//import com.github.bkenn.jpafx.data.VendorRepository
+import com.github.bkenn.jpafx.data.VendorRepository
 import com.github.bkenn.jpafx.model.VendorKotlin
 import javafx.collections.FXCollections
 import javafx.geometry.Pos
@@ -9,13 +9,13 @@ import tornadofx.*
 
 class KotlinView : View("Hello TornadoFX") {
 
-    //val vendorRepository: VendorRepository by di()
+    val vendorRepository: VendorRepository by di()
     val vendors = FXCollections.observableArrayList<VendorKotlin>()
 
     init {
-        //vendorRepository.save(VendorKotlin("Oracle"))
-        //vendorRepository.save(VendorKotlin("Google"))
-        //vendors.addAll(vendorRepository.findAll())
+        vendorRepository.save(VendorKotlin("Oracle"))
+        vendorRepository.save(VendorKotlin("Google"))
+        vendors.addAll(vendorRepository.findAll())
     }
 
     override val root = vbox {
@@ -26,8 +26,11 @@ class KotlinView : View("Hello TornadoFX") {
             addClass(Styles.heading)
         }
         tableview(vendors) {
-            column("ID", VendorKotlin::id)
-            column("Name", VendorKotlin::name)
+            column("ID", VendorKotlin::idProperty)
+            column("Name", VendorKotlin::nameProperty).makeEditable()
+            onEditCommit {
+                vendorRepository.save(it)
+            }
         }
     }
 

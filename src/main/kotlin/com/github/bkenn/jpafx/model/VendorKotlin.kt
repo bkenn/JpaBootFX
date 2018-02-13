@@ -3,28 +3,22 @@ package com.github.bkenn.jpafx.model
 import javafx.beans.property.SimpleIntegerProperty
 import javafx.beans.property.SimpleStringProperty
 import javax.persistence.*
+import tornadofx.*
 
-//@Entity(name = "vendor_kotlin")
+@Entity(name = "vendor_kotlin")
 class VendorKotlin(name: String? = null) {
 
-    @Transient
+    @get:Transient
     val idProperty = SimpleIntegerProperty(0)
 
-    @Transient
+    @get:Transient
     val nameProperty = SimpleStringProperty(name)
 
-    var id: Int
-        set(value) { idProperty.value = value }
+    @get:Id
+    @get:GeneratedValue(strategy = GenerationType.AUTO)
+    var id by idProperty
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
-        get() = idProperty.value
-
-    var name: String?
-        set(value) { nameProperty.value = value }
-
-        @Column(nullable = true)
-        get() = nameProperty.value
+    var name by nameProperty
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -40,7 +34,7 @@ class VendorKotlin(name: String? = null) {
 
     override fun hashCode(): Int {
         var result = id.hashCode()
-        result = 31 * result + (name?.hashCode() ?: 0)
+        result = 31 * result + name.hashCode()
         return result
     }
 
