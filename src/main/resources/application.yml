@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:h2:file:${user.dir}/build/test;DB_CLOSE_DELAY=-1;MVCC=TRUE
+    driver-class-name: org.h2.Driver
+  jpa:
+
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        mappingLocations: classpath:/hibernate/*.hbm.xml
+        connection:
+          poolSize: 1
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+  data:
+    jpa:
+      repositories:
+        enabled: true
+
