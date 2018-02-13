@@ -10,10 +10,8 @@ import javax.persistence.*;
 @Entity
 public class VendorJava {
 
-    @Transient
     private final IntegerProperty idProperty = new SimpleIntegerProperty();
 
-    @Transient
     private final StringProperty nameProperty = new SimpleStringProperty();
 
     public VendorJava() { }
