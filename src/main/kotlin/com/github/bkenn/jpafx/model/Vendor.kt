@@ -1,5 +1,6 @@
 package com.github.bkenn.jpafx.model
 
+/*
 import javafx.beans.property.SimpleIntegerProperty
 import javafx.beans.property.SimpleStringProperty
 import tornadofx.*
@@ -35,8 +36,9 @@ class Vendor(name: String? = null) {
     }
 
 }
+ */
 
-/*
+
 
 
 import javafx.beans.property.SimpleIntegerProperty
@@ -44,34 +46,28 @@ import javafx.beans.property.SimpleStringProperty
 import javax.persistence.*
 
 @Entity(name = "vendors")
-class Vendor {
+class Vendor(name: String? = null) {
 
-    @Transient
-    val idProperty = SimpleIntegerProperty()
-
-    @Transient
-    val nameProperty = SimpleStringProperty()
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Int = 0
         set(value) {
-            idProperty.value = value
+            //idProperty.value = value
             field = value
         }
+        @Id
+        @GeneratedValue(strategy = GenerationType.AUTO)
         get() {
-            field = idProperty.value
+            //field = idProperty.value
             return field
         }
 
-    @Column(nullable = true)
     var name: String? = null
         set(value) {
-            nameProperty.value = value
+            //nameProperty.value = value
             field = value
         }
+        @Column(nullable = true)
         get() {
-            field = nameProperty.value
+            //field = nameProperty.value
             return field
         }
 
@@ -98,4 +94,3 @@ class Vendor {
     }
 
 }
- */

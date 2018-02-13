@@ -8,7 +8,7 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean
 import java.util.*
 import javax.sql.DataSource
 
-//@Configuration
+@Configuration
 class HibernateConfiguration(val rl: ResourceLoader) {
 
     init {
@@ -19,8 +19,8 @@ class HibernateConfiguration(val rl: ResourceLoader) {
     fun sessionFactory(dataSource: DataSource): LocalSessionFactoryBean = LocalSessionFactoryBean().apply {
         setDataSource(dataSource)
         setPackagesToScan("com.github.bkenn.jpafx")
-        setMappingLocations(*ResourcePatternUtils.getResourcePatternResolver(rl).getResources("classpath:/hibernate/*.hbm.xml"))
-       // setConfigLocation(resourceLoader.getResource("classpath:hibernate.cfg.xml"))
+        //setMappingLocations(*ResourcePatternUtils.getResourcePatternResolver(rl).getResources("classpath:/hibernate/*.hbm.xml"))
+        setConfigLocation(resourceLoader.getResource("classpath:hibernate.cfg.xml"))
        // setMappingDirectoryLocations(rl.getResource("classpath:/hibernate/"))
         hibernateProperties = hibernateProperties()
     }

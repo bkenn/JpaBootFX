@@ -26,9 +26,13 @@ class MainView : View("Hello TornadoFX") {
             addClass(Styles.heading)
         }
         tableview(vendors) {
-            column("ID", Vendor::idProperty)
-            column("Name", Vendor::nameProperty)
+            column("ID", Vendor::id)
+            column("Name", Vendor::name)
         }
     }
 
 }
+
+/*
+
+ */

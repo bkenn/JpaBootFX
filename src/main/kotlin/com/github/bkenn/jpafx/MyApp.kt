@@ -1,5 +1,6 @@
 package com.github.bkenn.jpafx
 
+import com.github.bkenn.jpafx.view.JavaView
 import com.github.bkenn.jpafx.view.MainView
 import javafx.application.Application
 import org.springframework.boot.SpringApplication
