@@ -8,7 +8,12 @@ import javax.persistence.*
 import tornadofx.*
 
 @Entity(name = "vendors")
+@Access(AccessType.PROPERTY)
 class Vendor(name: String? = null) {
+
+    init {
+        println("Vendor Initialized")
+    }
 
     @get:Transient
     val idProperty = SimpleIntegerProperty(0)
@@ -23,13 +28,17 @@ class Vendor(name: String? = null) {
     var name by nameProperty
 
     @get:Transient
-    val customers: ObservableList<Customer> = FXCollections.observableArrayList()
+    var customers: ObservableList<Customer> = FXCollections.observableArrayList()
 
     @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
     fun getCustomers(): List<Customer> = customers.toList()
 
-    fun setCustomers(customers: List<Customer>) {
-        this.customers.setAll(customers)
+    fun setCustomers(customers: List<Customer>?) {
+        try {
+            this.customers = FXCollections.observableArrayList(customers)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
 

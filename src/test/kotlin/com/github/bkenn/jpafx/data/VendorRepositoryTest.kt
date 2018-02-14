@@ -68,4 +68,16 @@ class VendorRepositoryTest {
         vendors?.customers?.find { it.name == customerName }
                 ?: error("$vendorName should have a customer named $customerName")
     }
+
+    @Test
+    fun update() {
+        val jetbrains = Vendor("Jetbrains")
+        val c = listOf(Customer("Janet"), Customer("Steve"))
+        jetbrains.setCustomers(c)
+        vendorRepository.saveAndFlush(jetbrains)
+
+        val foundVendor = vendorRepository.findByName("Jetbrains")!!
+        foundVendor.customers.add(Customer("Santa"))
+        vendorRepository.saveAndFlush(foundVendor)
+    }
 }
