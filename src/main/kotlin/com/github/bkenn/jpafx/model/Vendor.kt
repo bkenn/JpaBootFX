@@ -25,7 +25,7 @@ class Vendor(name: String? = null) {
     @get:Transient
     val customers: ObservableList<Customer> = FXCollections.observableArrayList()
 
-    @OneToMany(cascade = [CascadeType.ALL])
+    @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
     fun getCustomers(): List<Customer> = customers.toList()
 
     fun setCustomers(customers: List<Customer>) {
