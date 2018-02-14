@@ -2,13 +2,12 @@ package com.github.bkenn.jpafx.model
 
 import javafx.beans.property.SimpleIntegerProperty
 import javafx.beans.property.SimpleStringProperty
-import javafx.collections.FXCollections
-import javafx.collections.ObservableList
-import javax.persistence.*
 import tornadofx.*
+import javax.persistence.*
 
-@Entity(name = "vendors")
-class Vendor(name: String? = null) {
+@Entity(name="customers")
+class Customer(name: String? = null) {
+
 
     @get:Transient
     val idProperty = SimpleIntegerProperty(0)
@@ -21,16 +20,6 @@ class Vendor(name: String? = null) {
     var id by idProperty
 
     var name by nameProperty
-
-    @get:Transient
-    var customersProperty: ObservableList<Customer> = FXCollections.observableArrayList()
-
-    @OneToMany(cascade = [CascadeType.ALL])
-    fun getCustomers(): List<Customer> = customersProperty.toList()
-
-    fun setCustomers(customers: List<Customer>) {
-        customersProperty.setAll(customers)
-    }
 
 
     override fun equals(other: Any?): Boolean {
@@ -52,7 +41,8 @@ class Vendor(name: String? = null) {
     }
 
     override fun toString(): String {
-        return "Vendor(id=$id, name=$name, customers=${customersProperty.joinToString(",", prefix = "[", postfix = "]")})"
+        return "Customer(id=$id, name=$name)"
     }
+
 
 }

@@ -10,7 +10,7 @@ spring:
           poolSize: 1
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-drop
   data:
     jpa:
       repositories:
