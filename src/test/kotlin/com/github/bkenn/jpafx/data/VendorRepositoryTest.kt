@@ -26,7 +26,7 @@ class VendorRepositoryTest {
 
         vendors.forEachIndexed { index, name ->
             val vendor = Vendor(name)
-            vendor.customersProperty.setAll(customers[index])
+            vendor.customers.setAll(customers[index])
             vendorRepository.save(vendor)
         }
 
@@ -55,8 +55,8 @@ class VendorRepositoryTest {
         vendors.forEach { name ->
             val customerCount = 2
             val vendor = vendorRepository.findByName(name)
-            assert(vendor?.customersProperty?.size == 2,
-                    {"Expect $name to have $customerCount customer but actually had ${vendor?.customersProperty?.size}"})
+            assert(vendor?.customers?.size == 2,
+                    {"Expect $name to have $customerCount customer but actually had ${vendor?.customers?.size}"})
         }
     }
 
@@ -65,7 +65,7 @@ class VendorRepositoryTest {
         val vendorName = "Jetbrains"
         val customerName = "Brian"
         val vendors = vendorRepository.findByName(vendorName)
-        vendors?.customersProperty?.find { it.name == customerName }
+        vendors?.customers?.find { it.name == customerName }
                 ?: error("$vendorName should have a customer named $customerName")
     }
 }

@@ -23,13 +23,13 @@ class Vendor(name: String? = null) {
     var name by nameProperty
 
     @get:Transient
-    var customersProperty: ObservableList<Customer> = FXCollections.observableArrayList()
+    var customers: ObservableList<Customer> = FXCollections.observableArrayList()
 
     @OneToMany(cascade = [CascadeType.ALL])
-    fun getCustomers(): List<Customer> = customersProperty.toList()
+    fun getCustomers(): List<Customer> = customers.toList()
 
     fun setCustomers(customers: List<Customer>) {
-        customersProperty.setAll(customers)
+        this.customers.setAll(customers)
     }
 
 
@@ -52,7 +52,7 @@ class Vendor(name: String? = null) {
     }
 
     override fun toString(): String {
-        return "Vendor(id=$id, name=$name, customers=${customersProperty.joinToString(",", prefix = "[", postfix = "]")})"
+        return "Vendor(id=$id, name=$name, customers=${customers.joinToString(",", prefix = "[", postfix = "]")})"
     }
 
 }

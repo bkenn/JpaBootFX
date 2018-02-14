@@ -1,7 +1,6 @@
 package com.github.bkenn.jpafx.view
 
 import com.github.bkenn.jpafx.Styles
-import com.github.bkenn.jpafx.data.CustomerRepository
 import com.github.bkenn.jpafx.data.VendorRepository
 import com.github.bkenn.jpafx.model.Customer
 import com.github.bkenn.jpafx.model.Vendor
@@ -17,7 +16,7 @@ class MainView : View("Hello TornadoFX") {
     init {
         val customers = listOf(Customer("Janet"), Customer("Steve"))
         val jetbrains = Vendor("Jetbrains")
-        jetbrains.customersProperty.addAll(customers)
+        jetbrains.customers.addAll(customers)
         vendorRepository.save(jetbrains)
         vendors.addAll(vendorRepository.findAll())
     }
@@ -32,7 +31,7 @@ class MainView : View("Hello TornadoFX") {
         tableview(vendors) {
             column("ID", Vendor::idProperty)
             column("Name", Vendor::nameProperty).makeEditable()
-            column("Customers", Vendor::customersProperty)
+            column("Customers", Vendor::customers)
             onEditCommit {
                 vendorRepository.save(it)
             }
