@@ -7,4 +7,8 @@ import javax.transaction.Transactional
 
 @Repository
 @Transactional
-interface CustomerRepository: JpaRepository<Customer, Long>
+interface CustomerRepository: JpaRepository<Customer, Long> {
+
+    fun findByName(name: String): Customer?
+
+}

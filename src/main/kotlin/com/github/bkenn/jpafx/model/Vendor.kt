@@ -11,10 +11,6 @@ import tornadofx.*
 @Access(AccessType.PROPERTY)
 class Vendor(name: String? = null) {
 
-    init {
-        println("Vendor Initialized")
-    }
-
     @get:Transient
     val idProperty = SimpleIntegerProperty(0)
 
@@ -30,12 +26,12 @@ class Vendor(name: String? = null) {
     @get:Transient
     var customers: ObservableList<Customer> = FXCollections.observableArrayList()
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
+    @OneToMany(fetch = FetchType.EAGER)
     fun getCustomers(): List<Customer> = customers.toList()
 
     fun setCustomers(customers: List<Customer>?) {
         try {
-            this.customers = FXCollections.observableArrayList(customers)
+            this.customers.setAll(customers)
         } catch (e: Exception) {
             e.printStackTrace()
         }
