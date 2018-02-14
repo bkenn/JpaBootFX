@@ -23,7 +23,7 @@ class Vendor(name: String? = null) {
     var name by nameProperty
 
     @get:Transient
-    var customers: ObservableList<Customer> = FXCollections.observableArrayList()
+    val customers: ObservableList<Customer> = FXCollections.observableArrayList()
 
     @OneToMany(cascade = [CascadeType.ALL])
     fun getCustomers(): List<Customer> = customers.toList()
