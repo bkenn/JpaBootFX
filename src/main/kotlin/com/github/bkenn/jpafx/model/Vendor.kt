@@ -5,7 +5,7 @@ import javafx.beans.property.SimpleStringProperty
 import javax.persistence.*
 import tornadofx.*
 
-@Entity(name = "vendor_kotlin")
+@Entity(name = "vendors")
 class Vendor(name: String? = null) {
 
     @get:Transient
