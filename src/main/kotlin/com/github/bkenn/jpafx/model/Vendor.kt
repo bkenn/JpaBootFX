@@ -6,7 +6,7 @@ import javax.persistence.*
 import tornadofx.*
 
 @Entity(name = "vendor_kotlin")
-class VendorKotlin(name: String? = null) {
+class Vendor(name: String? = null) {
 
     @get:Transient
     val idProperty = SimpleIntegerProperty(0)
@@ -24,7 +24,7 @@ class VendorKotlin(name: String? = null) {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as VendorKotlin
+        other as Vendor
 
         if (id != other.id) return false
         if (name != other.name) return false
@@ -39,7 +39,7 @@ class VendorKotlin(name: String? = null) {
     }
 
     override fun toString(): String {
-        return "VendorKotlin(id=$id, name=$name)"
+        return "Vendor(id=$id, name=$name)"
     }
 
 }

@@ -1,6 +1,6 @@
 package com.github.bkenn.jpafx
 
-import com.github.bkenn.jpafx.view.KotlinView
+import com.github.bkenn.jpafx.view.MainView
 import javafx.application.Application
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
@@ -9,7 +9,7 @@ import tornadofx.*
 import kotlin.reflect.KClass
 
 @SpringBootApplication
-class MyApp: App(KotlinView::class, Styles::class) {
+class MyApp: App(MainView::class, Styles::class) {
 
     private lateinit var springContext: ConfigurableApplicationContext
 

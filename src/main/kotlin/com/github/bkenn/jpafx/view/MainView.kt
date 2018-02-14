@@ -2,19 +2,19 @@ package com.github.bkenn.jpafx.view
 
 import com.github.bkenn.jpafx.Styles
 import com.github.bkenn.jpafx.data.VendorRepository
-import com.github.bkenn.jpafx.model.VendorKotlin
+import com.github.bkenn.jpafx.model.Vendor
 import javafx.collections.FXCollections
 import javafx.geometry.Pos
 import tornadofx.*
 
-class KotlinView : View("Hello TornadoFX") {
+class MainView : View("Hello TornadoFX") {
 
     val vendorRepository: VendorRepository by di()
-    val vendors = FXCollections.observableArrayList<VendorKotlin>()
+    val vendors = FXCollections.observableArrayList<Vendor>()
 
     init {
-        vendorRepository.save(VendorKotlin("Oracle"))
-        vendorRepository.save(VendorKotlin("Google"))
+        vendorRepository.save(Vendor("Oracle"))
+        vendorRepository.save(Vendor("Google"))
         vendors.addAll(vendorRepository.findAll())
     }
 
@@ -26,8 +26,8 @@ class KotlinView : View("Hello TornadoFX") {
             addClass(Styles.heading)
         }
         tableview(vendors) {
-            column("ID", VendorKotlin::idProperty)
-            column("Name", VendorKotlin::nameProperty).makeEditable()
+            column("ID", Vendor::idProperty)
+            column("Name", Vendor::nameProperty).makeEditable()
             onEditCommit {
                 vendorRepository.save(it)
             }
