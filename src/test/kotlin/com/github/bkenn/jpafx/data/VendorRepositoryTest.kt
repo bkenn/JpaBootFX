@@ -129,4 +129,11 @@ class VendorRepositoryTest {
         assert(doesCustomerNotExist, {"$customerNameTBU IS STILL A CUSTOMER OF $vendorName"})
         assert(doesCustomerExist, {"$customersUpdatedName IS NOT A CUSTOMER OF $vendorName"})
     }
+
+    @Test
+    fun `find all customers by vendor's name`() = withVendors {
+        val customers = customerRepository.findAllCustomersByVendorsName("Jetbrains")
+        assert(customers.size == 2, {"Customers Size: ${customers.size} \n $customers"})
+
+    }
 }

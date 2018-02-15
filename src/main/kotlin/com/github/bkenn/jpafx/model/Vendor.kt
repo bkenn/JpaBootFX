@@ -27,6 +27,11 @@ class Vendor(name: String? = null) {
     var customers: ObservableList<Customer> = FXCollections.observableArrayList()
 
     @OneToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "VendorsCustomers",
+            joinColumns = [(JoinColumn(name = "vendor_fk"))],
+            inverseJoinColumns = [(JoinColumn(name = "customer_fk"))]
+    )
     fun getCustomers(): List<Customer> = customers.toList()
 
     fun setCustomers(customers: List<Customer>?) {
